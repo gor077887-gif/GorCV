@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gor Sargsyan | Executive Multi-Language CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #f8fafc;
+            font-family: 'Outfit', sans-serif;
+            color: #334155;
+            line-height: 1.6;
+            padding: 80px 20px 40px 20px;
+        }
+        .cv-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+        
+        /* Fixed Lang Switcher */
+        .lang-nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 6px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            gap: 5px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .lang-btn {
+            border: none;
+            background: transparent;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            color: #64748b;
+            transition: all 0.2s ease;
+        }
+        .lang-btn.active {
+            background: #10b981;
+            color: white;
+        }
+
+        /* Header Area */
+        .cv-header {
+            padding: 50px 50px 40px 50px;
+            background: linear-gradient(135deg, #ffffff, #f0fdf4);
+            border-bottom: 2px solid #f1f5f9;
+        }
+        .title-wrapper {
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+            margin-bottom: 5px;
+        }
+        .cv-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.5px;
+        }
+        .cv-header h1 span { color: #10b981; }
+        .birth-year-badge {
+            font-size: 14px;
+            font-weight: 600;
+            color: #64748b;
+            background: #ffffff;
+            padding: 3px 10px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+        }
+        .cv-header .subtitle {
+            font-size: 17px;
+            font-weight: 600;
+            color: #0ea5e9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .contact-item { font-size: 14px; color: #475569; display: flex; align-items: center; gap: 10px; }
+        .contact-item i { color: #10b981; font-size: 16px; width: 20px; }
+        .contact-item a { color: #475569; text-decoration: none; font-weight: 600; }
+        .contact-item a:hover { color: #0ea5e9; }
+
+        /* Main Body */
+        .cv-body { padding: 50px; }
+        section { margin-bottom: 40px; }
+        
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title i { color: #10b981; }
+        
+        p.summary-text { font-size: 15px; color: #475569; text-align: justify; }
+        
+        .skills-wrapper { display: flex; flex-wrap: wrap; gap: 10px; }
+        .skill-tag {
+            background: rgba(16, 185, 129, 0.06);
+            color: #065f46;
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .exp-block { margin-bottom: 35px; border-bottom: 1px dashed #e2e8f0; padding-bottom: 25px; }
+        .exp-block:last-child { margin-bottom: 0; border: none; padding-bottom: 0; }
+        .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .exp-role { font-size: 17px; font-weight: 600; color: #0f172a; }
+        .exp-company { font-size: 14px; color: #0ea5e9; font-weight: 600; margin-top: 2px; }
+        .exp-date { font-size: 13px; color: #94a3b8; font-weight: 600; background: #f8fafc; padding: 4px 10px; border-radius: 6px; border: 1px solid #e2e8f0; }
+        
+        .exp-ul { list-style: none; padding-left: 0; }
+        .exp-ul li { font-size: 14.5px; color: #475569; margin-bottom: 10px; padding-left: 20px; position: relative; }
+        .exp-ul li::before { content: "→"; position: absolute; left: 0; color: #10b981; font-weight: bold; }
+        
+        .project-subgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        .project-subcard { background: #f8fafc; border: 1px solid #e2e8f0; padding: 18px; border-radius: 12px; }
+        .project-subcard h4 { font-family: 'Montserrat', sans-serif; font-size: 14px; color: #0f172a; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
+        .project-subcard h4 i { color: #10b981; }
+        .project-subcard p { font-size: 13px; color: #64748b; line-height: 1.5; }
+        .project-subcard a { display: inline-block; margin-top: 8px; font-size: 12px; color: #0ea5e9; text-decoration: none; font-weight: 600; }
+
+        @media (max-width: 768px) {
+            .cv-header, .cv-body { padding: 30px; }
+            .title-wrapper { flex-direction: column; align-items: flex-start; gap: 5px; }
+            .contact-grid, .project-subgrid { grid-template-columns: 1fr; }
+            .exp-header { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="lang-nav">
+        <button class="lang-btn active" onclick="switchLang('tr')">TR</button>
+        <button class="lang-btn" onclick="switchLang('en')">EN</button>
+        <button class="lang-btn" onclick="switchLang('es')">ES</button>
+        <button class="lang-btn" onclick="switchLang('ru')">RU</button>
+        <button class="lang-btn" onclick="switchLang('hy')">HY</button>
+    </nav>
+
+    <div class="cv-container">
+        <!-- HEADER -->
+        <div class="cv-header">
+            <div class="title-wrapper">
+                <h1>GOR <span>SARGSYAN</span></h1>
+                <div class="birth-year-badge" id="ux-birthyear">d. 1991</div>
+            </div>
+            <div class="subtitle" id="ux-subtitle">Kıdemli AI Çözüm Mimarı & Ekonomist</div>
+            <div class="contact-grid">
+                <div class="contact-item"><i class="fa-solid fa-location-dot"></i> <span id="ux-loc">İspanya / Küresel Operasyon Kapasitesi</span></div>
+                <div class="contact-item"><i class="fa-brands fa-whatsapp"></i> +7 922 091 82 18 (WhatsApp)</div>
+                <div class="contact-item"><i class="fa-solid fa-phone"></i> +34 678 27 66 26 (Spain Direct)</div>
+                <div class="contact-item"><i class="fa-solid fa-envelope"></i> <a href="mailto:gor077887@gmail.com">gor077887@gmail.com</a></div>
+                <div class="contact-item"><i class="fa-solid fa-link"></i> <a href="https://rswtrinvestgroup-alt.github.io/Gor_dijital_kartvisit/Gor/" id="ux-cardlink" target="_blank">Dijital Kartvizit Portfolyosu</a></div>
+                <div class="contact-item"><i class="fa-brands fa-telegram"></i> <a href="https://t.me/SargsyanOfLife" target="_blank">@SargsyanOfLife</a></div>
+            </div>
+        </div>
+
+        <!-- BODY -->
+        <div class="cv-body">
+            <!-- SUMMARY -->
+            <section>
+                <div class="section-title"><i class="fa-solid fa-user"></i> <span id="title-summary">PROFESYONEL ÖZET</span></div>
+                <p class="summary-text" id="text-summary"></p>
+            </section>
+
+            <!-- SKILLS -->
+            <section>
+                <div class="section-title"><i class="fa-solid fa-gears"></i> <span id="title-skills">YETKİNLİKLER</span></div>
+                <div class="skills-wrapper" id="wrapper-skills"></div>
+            </section>
+
+            <!-- EXPERIENCE -->
+            <section>
+                <div class="section-title"><i class="fa-solid fa-briefcase"></i> <span id="title-exp">PROFESYONEL DENEYİM</span></div>
+                
+                <!-- AI & TECH BLOCK -->
+                <div class="exp-block">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-role" id="exp-role-ai">Kıdemli AI Çözüm Mimarı & Ekonomik Danışman</div>
+                            <div class="exp-company" id="exp-company-ai">Kurumsal Danışmanlık & Freelance (Küresel Ölçek)</div>
+                        </div>
+                        <div class="exp-date" id="exp-date-ai">2021 - Günümüz</div>
+                    </div>
+                    <ul class="exp-ul" id="exp-bullets-ai"></ul>
+                    
+                    <div class="project-subgrid">
+                        <div class="project-subcard">
+                            <h4><i class="fa-solid fa-bread-slice"></i> Hamov Bakery System</h4>
+                            <p id="p-proj1">Üretim bantları ile müşteri sipariş akışlarını semantik yapay zeka katmanlarıyla senkronize eden uçtan uca otomasyon.</p>
+                            <a href="https://hamov-bakery-connect3.lovable.app/" id="link-proj1" target="_blank">Projeyi İncele →</a>
+                        </div>
+                        <div class="project-subcard">
+                            <h4><i class="fa-solid fa-chart-line"></i> RSW TR Invest Group</h4>
+                            <p id="p-proj2">Dinamik vaka analizi çerçeveleri ve otomatik çok dilli SEO boru hatlarıyla donatılmış premium kurumsal yatırım platformu.</p>
+                            <a href="https://rswtrinvestgroup-alt.github.io/NEW-SITE-PROJECT/" id="link-proj2" target="_blank">Projeyi İncele →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- E-COMMERCE & OPERATIONS BLOCK -->
+                <div class="exp-block">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-role" id="exp-role-ops">Operasyonel Yönetici & E-Ticaret Stratejisti</div>
+                            <div class="exp-company" id="exp-company-ops">Wildberries & Ozon Pazaryeri Operasyonları</div>
+                        </div>
+                        <div class="exp-date" id="exp-date-ops">2017 - 2021</div>
+                    </div>
+                    <ul class="exp-ul" id="exp-bullets-ops"></ul>
+                </div>
+
+                <!-- INDUSTRIAL & CONSTRUCTION BLOCK -->
+                <div class="exp-block">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-role" id="exp-role-const">Müdür Yardımcısı (Operasyon ve Tedarik Zinciri)</div>
+                            <div class="exp-company" id="exp-company-const">Endüstriyel İnşaat, Montaj ve Demontaj Projeleri</div>
+                        </div>
+                        <div class="exp-date" id="exp-date-const">2011 - 2017</div>
+                    </div>
+                    <ul class="exp-ul" id="exp-bullets-const"></ul>
+                </div>
+            </section>
+
+            <!-- EDUCATION -->
+            <section style="margin-bottom: 0;">
+                <div class="section-title"><i class="fa-solid fa-graduation-cap"></i> <span id="title-edu">EĞİTİM & SERTİFİKALAR</span></div>
+                <div class="exp-item" style="margin-bottom: 20px;">
+                    <div class="exp-role" id="edu1-title">Ekonomi Lisansı</div>
+                    <div class="exp-company" id="edu1-school">Ermenistan Ulusal Politeknik Üniversitesi</div>
+                    <p style="font-size: 14px; color: #64748b; margin-top: 5px;" id="edu1-desc">Uzmanlık: Makro-ekonomik analiz, kurumsal finansal yapılar ve istatistiksel modelleme.</p>
+                </div>
+                <div class="exp-item">
+                    <div class="exp-role" id="edu2-title">İleri Düzey Yapay Zeka Mühendisliği & LLM Mimarisi</div>
+                    <div class="exp-company" id="edu2-school">Özel Profesyonel Eğitimler & Teknik Sertifikasyonlar</div>
+                    <p style="font-size: 14px; color: #64748b; margin-top: 5px;" id="edu2-desc">Odak Noktası: Prompt optimizasyonu, çoklu ajan (multi-agent) çerçeveleri, API boru hattı güvenliği.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT TRANSLATION ENGINE -->
+    <script>
+        const translations = {
+            tr: {
+                birthyear: "d. 1991",
+                subtitle: "Kıdemli AI Çözüm Mimarı & Ekonomist",
+                loc: "İspanya / Küresel Operasyon Kapasitesi",
+                cardlink: "Dijital Kartvizit Portfolyosu",
+                t_summary: "PROFESYONEL ÖZET",
+                t_skills: "YETKİNLİKLER",
+                t_exp: "PROFESYONEL DENEYİM",
+                t_edu: "EĞİTİM & SERTİFİKALAR",
+                summary: "15 yılı aşkın finansal analiz, makro-ekonomik modelleme ve büyük ölçekli operasyonel yönetim tecrübesini, ileri nesil yapay zeka mühendisliği (Agentic Workflows, LLM entegrasyonları) ile başarıyla birleştiren vizyoner Çözüm Mimarı. E-ticaret devlerinde (Wildberries, Ozon) milyar rublelik hacimleri yönetmiş ve ağır sanayi/inşaat projelerinde üst düzey idari liderlik yapmış benzersiz bir profil. İşletmelerin operasyonel genel giderlerini %70'e varan oranda azaltan, tedarik zincirini optimize eden ve kârlılık odaklı yapay zeka ekosistemleri kuran stratejist.",
+                skills: ["Otonom Satış Ajanları", "Ajan İş Akışları (Agentic)", "Büyük Ölçekli E-Ticaret Yönetimi", "Tedarik Zinciri & Lojistik Optimizasyonu", "Operasyonel Liderlik", "LLM Mimarisi & API Entegrasyonu", "ROI & Finansal Analiz", "Endüstriyel Proje Yönetimi", "Çok Dilli Sistem Lokalizasyonu"],
+                
+                role_ai: "Kıdemli AI Çözüm Mimarı & Ekonomik Danışman",
+                company_ai: "Kurumsal Danışmanlık & Freelance (Küresel Ölçek)",
+                date_ai: "2021 - Günümüz",
+                bullets_ai: [
+                    "Avrupa ve Rusya Federasyonu genelindeki uluslararası B2B müşterileri için 24'ten fazla yüksek değerli kurumsal yapay zeka entegrasyonu ve otonom iş akışı tasarladı ve devreye aldı.",
+                    "Uluslararası lead'leri nitelendiren ve dinamik fiyatlandırmayı yöneten mantıksal otonom satış ajanları geliştirdi; bu sayede gece gelen müşteri trafiğinde %34'lük bir dönüşüm oranı artışı sağladı.",
+                    "Kurumsal manuel darboğazları denetlemek için tescilli bir finansal verimlilik formülü optimize etti; bu sayede işletmelerin yıllık ortalama 140.000 Avro'nun üzerinde operasyonel tasarruf elde etmesini sağladı."
+                ],
+                
+                role_ops: "Operasyonel Yönetici & E-Ticaret Stratejisti",
+                company_ops: "Wildberries & Ozon Pazaryeri Operasyonları",
+                date_ops: "2017 - 2021",
+                bullets_ops: [
+                    "Wildberries ve Ozon platformlarında mağaza kurulumu, tedarik zinciri lojistiği, stok optimizasyonu ve büyük ölçekli dijital satış operasyonlarını uçtan uca yönetti.",
+                    "Pazar verilerini ve rakip fiyat hareketlerini analiz ederek kârlılık marjlarını maksimuma çıkaran fiyatlandırma ve kampanya stratejileri kurguladı.",
+                    "Müşteri ilişkileri süreçlerini, iade döngülerini ve depo veri akışlarını optimize ederek operasyonel hata payını sıfıra yaklaştırdı."
+                ],
+                
+                role_const: "Müdür Yardımcısı (Operasyon ve Tedarik Zinciri)",
+                company_const: "Endüstriyel İnşaat, Montaj ve Demontaj Projeleri",
+                date_const: "2011 - 2017",
+                bullets_const: [
+                    "Büyük ölçekli endüstriyel inşaat, montaj ve demontaj projelerinde iş geliştirme, bütçeleme ve genel operasyonlardan sorumlu Müdür Yardımcısı olarak görev yaptı.",
+                    "Saha ekiplerinin koordinasyonu, lojistik süreçlerin yönetimi ve alt yüklenici sözleşmelerinin finansal-operasyonel denetim süreçlerini yönetti.",
+                    "Ekonomist analitiği sayesinde proje bütçelerinde maliyet darboğazlarını tespit ederek, kaynak israfını önledi ve projelerin hedeflenen süre/bütçe dahilinde tamamlanmasını sağladı."
+                ],
+                
+                p1: "Üretim bantları ile müşteri sipariş akışlarını semantik yapay zeka katmanlarıyla senkronize eden uçtan uca otomasyon.",
+                p2: "Dinamik vaka analizi çerçeveleri ve otomatik çok dilli SEO boru hatlarıyla donatılmış premium kurumsal yatırım platformu.",
+                l1: "Projeyi İncele →", l2: "Projeyi İncele →",
+                ed1_t: "Ekonomi Lisansı", ed1_s: "Ermenistan Ulusal Politeknik Üniversitesi", ed1_d: "Uzmanlık: Makro-ekonomik analiz, kurumsal finansal yapılar ve istatistiksel modelleme.",
+                ed2_t: "İleri Düzey Yapay Zeka Mühendisliği & LLM Mimarisi", ed2_s: "Özel Profesyonel Eğitimler & Teknik Sertifikasyonlar", ed2_d: "Odak Noktası: Prompt optimizasyonu, çoklu ajan (multi-agent) çerçeveleri, API boru hattı güvenliği."
+            },
+            en: {
+                birthyear: "b. 1991",
+                subtitle: "Senior AI Solution Architect & Economist",
+                loc: "Spain / Global Operational Capacity",
+                cardlink: "Digital Business Card Portfolio",
+                t_summary: "PROFESSIONAL SUMMARY",
+                t_skills: "CORE COMPETENCIES",
+                t_exp: "PROFESSIONAL EXPERIENCE",
+                t_edu: "EDUCATION & CERTIFICATIONS",
+                summary: "A visionary AI Solution Architect and Economist with over 15 years of deep expertise combining financial analysis, macro-economic modeling, and high-level operational management with next-generation AI engineering. A unique executive profile that has managed high-volume digital sales inside e-commerce giants (Wildberries, Ozon) and provided senior corporate leadership as Deputy Director in heavy construction and industrial installation sectors. Specialized in creating scalable, ROI-centric automated ecosystems that cut overhead costs by up to 70%.",
+                skills: ["Autonomous Sales Agents", "Agentic Workflows", "E-Commerce Enterprise Management", "Supply Chain & Logistics Optimization", "Executive Leadership", "LLM Architecture & APIs", "ROI & Financial Analytics", "Industrial Project Management", "Multi-language Localization"],
+                
+                role_ai: "Senior AI Solutions Architect & Economic Consultant",
+                company_ai: "Freelance & Corporate Consultancy (Global Scale)",
+                date_ai: "2021 - Present",
+                bullets_ai: [
+                    "Architected, engineered, and successfully deployed 24+ high-value corporate AI integrations and autonomous workflows for international B2B clients across Europe and the RF.",
+                    "Engineered reasoning-based autonomous sales agents that qualified international leads and handled dynamic pricing, yielding a 34% conversion rate increase in off-hours customer traffic.",
+                    "Optimized a proprietary financial efficiency formula to audit corporate manual bottlenecks, enabling businesses to achieve an average of €140K+ in annual operational savings."
+                ],
+                
+                role_ops: "Operations Manager & E-Commerce Strategist",
+                company_ops: "Wildberries & Ozon Marketplace Operations",
+                date_ops: "2017 - 2021",
+                bullets_ops: [
+                    "Managed end-to-end store architecture, supply chain logistics, inventory optimization, and large-scale digital sales pipelines across Wildberries and Ozon platforms.",
+                    "Analyzed complex market data and competitor pricing dynamics to deploy high-yield mathematical promotional and margins strategies.",
+                    "Streamlined customer relations models, return cycle logisitics, and warehouse data streams to reduce operational error margins to zero."
+                ],
+                
+                role_const: "Deputy Director (Operations & Supply Chain)",
+                company_const: "Industrial Construction, Assembly & Dismantling Projects",
+                date_const: "2011 - 2017",
+                bullets_const: [
+                    "Served as Deputy Director responsible for business development, financial budgeting, and general operations across high-scale industrial construction, assembly, and dismantling infrastructure.",
+                    "Supervised the synchronization of on-site technical teams, international heavy logistics, and subcontractor contract audits.",
+                    "Utilized economic analytics to audit cost bottlenecks in project budgets, preventing resource waste and ensuring project delivery within strict timelines."
+                ],
+                p1: "Engineered an end-to-end operational automation platform synchronizing production lines with client order flows.",
+                p2: "Architected a premium corporate investment platform embedded with dynamic case study frameworks and automated SEO.",
+                l1: "Explore Live Site →", l2: "Explore Live Site →",
+                ed1_t: "Degree in Economics", ed1_s: "National Polytechnic University of Armenia", ed1_d: "Specialization: Macro-economic analysis, corporate financial structures, and statistical modeling.",
+                ed2_t: "Advanced AI Engineering & Large Language Model (LLM) Architecture", ed2_s: "Specialized Professional Trainings & Technical Certifications", ed2_d: "Focus: Prompt engineering optimization, multi-agent frameworks, API pipeline security."
+            },
+            es: {
+                birthyear: "n. 1991",
+                subtitle: "Arquitecto de Soluciones de IA & Economista Senior",
+                loc: "España / Capacidad Operativa Global",
+                cardlink: "Portafolio de Tarjeta Digital",
+                t_summary: "RESUMEN PROFESIONAL",
+                t_skills: "COMPETENCIAS CENTRALES",
+                t_exp: "EXPERIENCIA PROFESIONAL",
+                t_edu: "EDUCACIÓN & CERTIFICACIONES",
+                summary: "Arquitecto de soluciones de IA y economista visionario con más de 15 años de profunda experiencia combinando análisis financiero, modelado macroeconómico y gestión operativa de alto nivel con ingeniería de IA de próxima generación. Un perfil ejecutivo único que ha gestionado ventas digitales de gran volumen dentro de gigantes del comercio electrónico (Wildberries, Ozon) y ha proporcionado liderazgo corporativo senior como Subdirector en los sectores de construcción industrial e instalación pesada.",
+                skills: ["Agentes de Ventas Autónomos", "Flujos de Trabajo Agentes", "Gestión de Comercio Electrónico", "Optimización de Cadena de Suministro", "Liderazgo Ejecutivo", "Arquitectura LLM & APIs", "Análisis Financiero y ROI", "Gestión de Proyectos Industriales", "Localización Multilingüe"],
+                
+                role_ai: "Arquitecto Senior de Soluciones de IA & Consultor Económico",
+                company_ai: "Consultoría Corporativa y Freelance (Escala Global)",
+                date_ai: "2021 - Presente",
+                bullets_ai: [
+                    "Diseñó e implementó con éxito más de 24 integraciones de IA corporativas de alto valor y flujos de trabajo autónomos para clientes B2B internacionales en Europa.",
+                    "Desarrolló agentes de ventas autónomos basados en razonamiento que calificaron clientes potenciales internacionales, logrando un aumento del 34% en la conversión nocturna.",
+                    "Optimizó una fórmula patentada de eficiencia financiera para auditar cuellos de botella manuales, ahorrando un promedio de €140K+ anuales a las empresas."
+                ],
+                
+                role_ops: "Gerente de Operaciones & Estratega de Comercio Electrónico",
+                company_ops: "Operaciones de Mercado en Wildberries & Ozon",
+                date_ops: "2017 - 2021",
+                bullets_ops: [
+                    "Gestionó de extremo a extremo la arquitectura de tiendas, logística de suministro y optimización de inventarios en las plataformas Wildberries y Ozon.",
+                    "Analizó datos de mercado complejos y dinámicas de precios de la competencia para implementar estrategias promocionales de alto rendimiento.",
+                    "Optimizó los modelos de relaciones con los clientes y los flujos de datos de almacén para reducir a cero los márgenes de error."
+                ],
+                
+                role_const: "Subdirector (Operaciones y Cadena de Suministro)",
+                company_const: "Proyectos de Construcción, Montaje y Desmontaje Industrial",
+                date_const: "2011 - 2017",
+                bullets_const: [
+                    "Se desempeñó como Subdirector responsable del desarrollo comercial, presupuestos financieros y operaciones generales en infraestructuras de construcción y montaje industrial.",
+                    "Supervisó la sincronización de equipos técnicos en el sitio, logística pesada internacional y auditorías de contratos de subcontratistas.",
+                    "Utilizó análisis económicos para auditar cuellos de botella en los presupuestos de los proyectos, garantizando la entrega dentro de los plazos establecidos."
+                ],
+                p1: "Plataforma de automatización operativa que sincroniza las líneas de producción con los pedidos.",
+                p2: "Plataforma de inversión corporativa premium equipada con marcos dinámicos y SEO automático.",
+                l1: "Explorar Sitio →", l2: "Explorar Sitio →",
+                ed1_t: "Licenciatura en Economía", ed1_s: "Universidad Politécnica Nacional de Armenia", ed1_d: "Especialización: Análisis macroeconómico, estructuras financieras corporativas y modelado estadístico.",
+                ed2_t: "Ingeniería Avanzada de IA & Arquitectura de Modelos de Lenguaje (LLM)", ed2_s: "Capacitaciones Profesionales Especializadas & Certificaciones Técnicas", ed2_d: "Enfoque: Optimización de prompts, marcos multi-agente, seguridad de API."
+            },
+            ru: {
+                birthyear: "р. 1991",
+                subtitle: "Старший Архитектор AI-Решений и Экономист",
+                loc: "Испания / Глобальный Операционный Потенциал",
+                cardlink: "Портфолио Цифровой Визитки",
+                t_summary: "ПРОФЕССИОНАЛЬНОЕ РЕЗЮМЕ",
+                t_skills: "КЛЮЧЕВЫЕ КОМПЕТЕНЦИИ",
+                t_exp: "ПРОФЕССИОНАЛЬНЫЙ ОПЫТ",
+                t_edu: "ОБРАЗОВАНИЕ И СЕРТИФИКАТЫ",
+                summary: "Прогрессивный архитектор ИИ-решений и экономист с более чем 15-летним глубоким опытом, сочетающий финансовый анализ, макроэкономическое моделирование и операционное управление высшего уровня с ИИ-инженерией нового поколения. Уникальный управленческий профиль: руководил масштабными цифровыми продажами в гигантах электронной коммерции (Wildberries, Ozon) и занимал должность Заместителя директора в секторе промышленного строительства, монтажа и демонтажа.",
+                skills: ["Автономные Агенты Продаж", "Агентские Рабочие Процессы", "Управление Электронной Коммерцией", "Оптимизация Цепей Поставок и Логистики", "Операционное Руководство", "Архитектура LLM и API", "Финансовый Анализ и ROI", "Управление Промышленными Проектами", "Мультиязычная Локализация"],
+                
+                role_ai: "Старший Архитектор AI-Решений и Экономический Консультант",
+                company_ai: "Корпоративный Консалтинг и Фриланс (Глобальный Масштаб)",
+                date_ai: "2021 - По наст. время",
+                bullets_ai: [
+                    "Разработал и успешно внедрил более 24 высокотехнологичных корпоративных интеграций ИИ и автономных рабочих процессов для международных B2B-клиентов.",
+                    "Создал автономных агентов продаж на основе логических цепочек, обеспечив рост конверсии на 34% в ночное время.",
+                    "Оптимизировал собственную формулу финансовой эффективности для аудита ручных процессов, что принесло компаниям в среднем более 140 000 евро ежегодной экономии."
+                ],
+                
+                role_ops: "Операционный Руководитель и Стратег Электронной Коммерции",
+                company_ops: "Управление Операциями на Маркетплейсах Wildberries & Ozon",
+                date_ops: "2017 - 2021",
+                bullets_ops: [
+                    "Управлял сквозной архитектурой магазинов, логистикой цепочки поставок, оптимизацией запасов и масштабными цифровыми продажами на платформах Wildberries и Ozon.",
+                    "Анализировал сложные рыночные данные и ценовую динамику конкурентов для внедрения высокоэффективных маркетинговых и маржинальных стратегий.",
+                    "Оптимизировал модели взаимоотношений с клиентами и складские потоки данных, чтобы свести к нулю операционные ошибки."
+                ],
+                
+                role_const: "Заместитель Директора (Операции и Цепи Поставок)",
+                company_const: "Промышленные Строительные, Монтажные и Демонтажные Проекты",
+                date_const: "2011 - 2017",
+                bullets_const: [
+                    "Работал в должности Заместителя директора, отвечал за развитие бизнеса, финансовое бюджетирование и общие операции в проектах промышленного строительства и монтажа.",
+                    "Руководил координацией строительных бригад на объектах, сложной международной логистикой и аудитом контрактов субподрядчиков.",
+                    "Использовал экономическую аналитику для аудита бюджетов проектов, предотвращая нерациональное использование ресурсов и гарантируя сдачу объектов в срок."
+                ],
+                p1: "Сквозная платформа автоматизации операций, синхронизирующая производственные линии с входящими потоками заказов.",
+                p2: "Инвестиционная платформа премиум-класса с динамическими кейсами и автоматическими мультиязычными SEO-архитектурами.",
+                l1: "Смотреть Проект →", l2: "Смотреть Проект →",
+                ed1_t: "Диплом в Области Экономики", ed1_s: "Национальный политехнический университет Армении", ed1_d: "Специализация: Макроэкономический анализ, корпоративные финансовые структуры и статистическое моделирование.",
+                ed2_t: "Продвинутая AI-Инженерия и Архитектура Больших Языковых Моделей (LLM)", ed2_s: "Специализированное Профессиональное Обучение и Технические Сертификаты", ed2_d: "Фокус: Оптимизация промпт-инжиниринга, мультиагентные системы, безопасность API."
+            },
+            hy: {
+                birthyear: "ծնվ. 1991",
+                subtitle: "Արհեստական Բանականության (AI) Ավագ Լուծումների Ճարտարապետ և Տնտեսագետ",
+                loc: "Իսպանիա / Գլոբալ Օպերատիվ Կարողություն",
+                cardlink: "Թվային Այցեքարտի Պորտֆոլիո",
+                t_summary: "ՄԱՍՆԱԳԻՏԱԿԱՆ ԱՄՓՈՓՈՒՄ",
+                t_skills: "ՀԻՄՆԱԿԱՆ ԿՈՄՊԵՏԵՆՑԻԱՆԵՐ",
+                t_exp: "ՄԱՍՆԱԳԻՏԱԿԱՆ ՓՈՐՁ",
+                t_edu: "ԿՐԹՈՒԹՅՈՒՆ ԵՎ ՍԵՐՏԻՖԻԿԱՏՆԵՐ",
+                summary: "Արհեստական բանականության լուծումների հեռատես ճարտարապետ և տնտեսագետ՝ ավելի քան 15 տարվա խորը փորձով, ով համատեղում է ֆինանսական վերլուծությունը, մակրոտնտեսական մոդելավորումը և բարձր մակարդակի օպերացիոն կառավարումը AI ինժեներիայի հետ: Ունիկալ կառավարչական պրոֆիլ, ով ղեկավարել է էլեկտրոնային առևտրի հսկաների (Wildberries, Ozon) մեծածավալ վաճառքները և հանդիսացել է Փոխտնօրեն արդյունաբերական շինարարության և մոնտաժման ոլորտներում:",
+                skills: ["Ինքնավար Վաճառքի Գործակալներ", "Գործակալական Աշխատանքային Հոսքեր", "Էլեկտրոնային Առևտրի Կառավարում", "Մատակարարման Շղթայի Օպտիմալացում", "Գործադիր Ղեկավարում", "LLM Ճարտարապետություն և API-ներ", "Ֆինանսական Վերլուծություն և ROI", "Արդյունաբերական Ծրագրերի Կառավարում", "Բազմալեզու Լոկալիզացիա"],
+                
+                role_ai: "Արհեստական Բանականության (AI) Ավագ Լուծումների Ճարտարապետ և Տնտեսական Խորհրդատու",
+                company_ai: "Կորպորատիվ Խորհրդատվություն և Ֆրիլանս (Գլոբալ Մասշտաբ)",
+                date_ai: "2021 - Այժմ",
+                bullets_ai: [
+                    "Նախագծել և հաջողությամբ ներդրել է 24+ բարձրարժեք կորպորատիվ AI ինտեգրումներ և ինքնավար աշխատային հոսքեր Եվրոպայի B2B հաճախորդների համար:",
+                    "Մշակել է տրամաբանության վրա հիմնված վաճառքի գործակալներ, որոնք ապահովել են գիշերային ժամերի տրաֆիկի կոնվերսիայի 34% աճ:",
+                    "Օպտիմալացրել է ֆինանսական արդյունավետության սեփական բանաձևը, ինչը թույլ է տվել ընկերություններին հասնել տարեկան միջինը ավելի քան 140,000 Եվրո օպերացիոն խնայողության:"
+                ],
+                
+                role_ops: "Օպերացիոն Կառավարիչ և Էլեկտրոնային Առևտրի Ստրատեգ",
+                company_ops: "Wildberries և Ozon Հարթակների Օպերացիաներ",
+                date_ops: "2017 - 2021",
+                bullets_ops: [
+                    "Ղեկավարել է Wildberries և Ozon հարթակներում խանութների կառուցվածքը, մատակարարման շղթայի լոգիստիկան և պաշարների օպտիմալացումը:",
+                    "Վերլուծել է շուկայական բարդ տվյալները և մրցակիցների գնային դինամիկան բարձր արդյունավետությամբ ռազմավարություններ կիրառելու համար:",
+                    "Օպտիմալացրել է հաճախորդների հետ հարաբերությունների մոդելները և պահեստի տվյալների հոսքերը՝ օպերացիոն սխալները հասցնելով զրոյի:"
+                ],
+                
+                role_const: "Փոխտնօրեն (Օպերացիաներ և Մատակարարման Շղթա)",
+                company_const: "Արդյունաբերական Շինարարության, Մոնտաժման և Ապամոնտաժման Ծրագրեր",
+                date_const: "2011 - 2017",
+                bullets_const: [
+                    "Հանդիսացել է Փոխտնօրեն՝ պատասխանատու բիզնեսի զարգացման, ֆինանսական բյուջետավորման և ընդհանուր օպերացիաների համար արդյունաբերական շինարարության ոլորտում:",
+                    "Վերահսկել է տեղում տեխնիկական թիմերի համակարգումը, միջազգային ծանր լոգիստիկան և ենթակապալառուների պայմանագրերի աուդիտը:",
+                    "Օգտագործել է տնտեսագիտական վերլուծությունը ծրագրերի բյուջեներում ծախսերի խնդիրները վերացնելու համար՝ ապահովելով ծրագրերի հանձնումը խիստ ժամկետներում:"
+                ],
+                p1: "Գործառնական ավտոմատացման համակարգ, որը սինխրոնացնում է արտադրական գծերը հաճախորդների պատվերների հոսքերի հետ:",
+                p2: "Պրեմիում դասի ներդրումային հարթակ՝ հագեցած դինամիկ Case Study մոդուլներով և ավտոմատացված բազմալեզու SEO համակարգերով:",
+                l1: "Տեսնել Նախագիծը →", l2: "Տեսնել Նախագիծը →",
+                ed1_t: "Տնտեսագիտության Բակալավր", ed1_s: "Հայաստանի Ազգային Պոլիտեխնիկական Համալսարան", ed1_d: "Մասնագիտացում. Մակրոտնտեսական վերլուծություն, կորպորատիվ ֆինանսական կառուցվածքներ և վիճակագրական մոդելավորում:",
+                ed2_t: "Արհեստական Բանականության Ընդլայնված Ինժեներիա և Լեզվական Մեծ Մոդելների (LLM) Ճարտարապետություն", ed2_s: "Մասնագիտացված Մասնագիտական Դասընթացներ և Տեխնիկական Սերտիֆիկատներ", ed2_d: "Կենտրոնացում. Prompt-ի օպտիմալացում, բազմագործակալ համակարգեր, API խողովակաշարերի անվտանգություն:"
+            }
+        };
+
+        function switchLang(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const data = translations[lang];
+
+            // Header Area
+            document.getElementById('ux-birthyear').innerText = data.birthyear;
+            document.getElementById('ux-subtitle').innerText = data.subtitle;
+            document.getElementById('ux-loc').innerText = data.loc;
+            document.getElementById('ux-cardlink').innerText = data.cardlink;
+
+            // Titles
+            document.getElementById('title-summary').innerText = data.t_summary;
+            document.getElementById('title-skills').innerText = data.t_skills;
+            document.getElementById('title-exp').innerText = data.t_exp;
+            document.getElementById('title-edu').innerText = data.t_edu;
+
+            // Summary Text
+            document.getElementById('text-summary').innerText = data.summary;
+
+            // Rebuild Skill Tags
+            const skillsWrapper = document.getElementById('wrapper-skills');
+            skillsWrapper.innerHTML = '';
+            data.skills.forEach(skill => {
+                const span = document.createElement('span');
+                span.className = 'skill-tag';
+                span.innerText = skill;
+                skillsWrapper.appendChild(span);
+            });
+
+            // BLOCK 1: AI & TECH
+            document.getElementById('exp-role-ai').innerText = data.role_ai;
+            document.getElementById('exp-company-ai').innerText = data.company_ai;
+            document.getElementById('exp-date-ai').innerText = data.date_ai;
+            const bulletsAiUl = document.getElementById('exp-bullets-ai');
+            bulletsAiUl.innerHTML = '';
+            data.bullets_ai.forEach(bullet => {
+                const li = document.createElement('li');
+                li.innerHTML = bullet;
+                bulletsAiUl.appendChild(li);
+            });
+
+            // BLOCK 2: E-COMMERCE & OPS
+            document.getElementById('exp-role-ops').innerText = data.role_ops;
+            document.getElementById('exp-company-ops').innerText = data.company_ops;
+            document.getElementById('exp-date-ops').innerText = data.date_ops;
+            const bulletsOpsUl = document.getElementById('exp-bullets-ops');
+            bulletsOpsUl.innerHTML = '';
+            data.bullets_ops.forEach(bullet => {
+                const li = document.createElement('li');
+                li.innerHTML = bullet;
+                bulletsOpsUl.appendChild(li);
+            });
+
+            // BLOCK 3: CONSTRUCTION
+            document.getElementById('exp-role-const').innerText = data.role_const;
+            document.getElementById('exp-company-const').innerText = data.company_const;
+            document.getElementById('exp-date-const').innerText = data.date_const;
+            const bulletsConstUl = document.getElementById('exp-bullets-const');
+            bulletsConstUl.innerHTML = '';
+            data.bullets_const.forEach(bullet => {
+                const li = document.createElement('li');
+                li.innerHTML = bullet;
+                bulletsConstUl.appendChild(li);
+            });
+
+            // Projects Subcards
+            document.getElementById('p-proj1').innerText = data.p1;
+            document.getElementById('p-proj2').innerText = data.p2;
+            document.getElementById('link-proj1').innerText = data.l1;
+            document.getElementById('link-proj2').innerText = data.l2;
+
+            // Education
+            document.getElementById('edu1-title').innerText = data.ed1_t;
+            document.getElementById('edu1-school').innerText = data.ed1_s;
+            document.getElementById('edu1-desc').innerText = data.ed1_d;
+            document.getElementById('edu2-title').innerText = data.ed2_t;
+            document.getElementById('edu2-school').innerText = data.ed2_s;
+            document.getElementById('edu2-desc').innerText = data.ed2_d;
+        }
+
+        // Initialize Page with Turkish Content
+        switchLang('tr');
+    </script>
+</body>
+</html>
